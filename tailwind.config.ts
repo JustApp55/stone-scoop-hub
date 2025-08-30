@@ -61,7 +61,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Ice cream theme colors
+				strawberry: 'hsl(var(--strawberry))',
+				chocolate: 'hsl(var(--chocolate))',
+				vanilla: 'hsl(var(--vanilla))',
+				mint: 'hsl(var(--mint))',
+				berry: 'hsl(var(--berry))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -2,41 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Cold Stone Creamery Design System - Vibrant ice cream theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core brand colors */
+    --background: 48 100% 95%;
+    --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 13% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 13% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Cold Stone Red brand */
+    --primary: 356 68% 47%;
+    --primary-foreground: 0 0% 100%;
 
+    /* Soft cream backgrounds */
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 356 68% 47%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 356 68% 47%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 356 68% 47%;
 
-    --radius: 0.5rem;
+    /* Ice cream theme colors */
+    --strawberry: 350 100% 88%;
+    --chocolate: 25 76% 31%;
+    --vanilla: 48 100% 95%;
+    --mint: 142 76% 73%;
+    --berry: 300 47% 75%;
+    
+    /* Gradient backgrounds */
+    --hero-gradient: linear-gradient(45deg, hsl(356 68% 47%), hsl(25 100% 55%), hsl(48 100% 50%), hsl(120 60% 50%), hsl(220 100% 50%));
+    --seasonal-gradient: linear-gradient(135deg, hsl(25 100% 55%), hsl(320 65% 60%));
+    --rewards-gradient: linear-gradient(135deg, hsl(265 83% 57%), hsl(220 100% 60%));
+    --coupon-gradient: linear-gradient(135deg, hsl(48 100% 67%), hsl(35 100% 60%));
+
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(356 68% 47% / 0.1), 0 2px 4px -1px hsl(356 68% 47% / 0.06);
+    --shadow-hero: 0 25px 50px -12px hsl(356 68% 47% / 0.25);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +122,53 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(var(--vanilla)), hsl(var(--strawberry)));
   }
+  
+  .hero-gradient {
+    background: var(--hero-gradient);
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  .seasonal-gradient {
+    background: var(--seasonal-gradient);
+  }
+  
+  .rewards-gradient {
+    background: var(--rewards-gradient);
+  }
+  
+  .coupon-gradient {
+    background: var(--coupon-gradient);
+  }
+}
+
+@layer components {
+  .ice-cream-card {
+    @apply bg-card rounded-2xl shadow-lg p-5 transition-all duration-300 hover:shadow-xl hover:scale-105;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .hero-button {
+    @apply font-black px-6 py-3 rounded-full transition-all duration-300 hover:scale-105;
+  }
+  
+  .tab-button {
+    @apply px-4 py-2 rounded-full font-semibold transition-colors duration-200;
+  }
+  
+  .tab-active {
+    @apply bg-primary text-primary-foreground;
+  }
+  
+  .tab-inactive {
+    @apply bg-secondary text-secondary-foreground hover:bg-primary/10;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
