@@ -1,4 +1,4 @@
-import ColdStoneApp from "@/components/ColdStoneApp";
+import { ColdStoneApp } from "@/components/ColdStoneAppNew";
 
 const Index = () => {
   return <ColdStoneApp />;
