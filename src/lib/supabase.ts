@@ -1,9 +1,12 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-export const sb = createClient(
-  import.meta.env.VITE_SUPABASE_URL!,
-  import.meta.env.VITE_SUPABASE_ANON_KEY!
-)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+export const sb: SupabaseClient | null = 
+  supabaseUrl && supabaseAnonKey 
+    ? createClient(supabaseUrl, supabaseAnonKey) 
+    : null
 
 export type Database = {
   public: {
@@ -58,11 +61,19 @@ export type OrderPayload = {
 }
 
 export async function saveOrder(payload: OrderPayload): Promise<void> {
+  if (!sb) {
+    console.warn('Supabase not configured - order not saved')
+    return
+  }
   const { error } = await sb.from('orders').insert(payload)
   if (error) throw error
 }
 
 export async function joinClub(email: string): Promise<void> {
+  if (!sb) {
+    console.warn('Supabase not configured - signup not saved')
+    return
+  }
   const { error } = await sb.from('club_signups').insert({ email })
   if (error) throw error
 }
